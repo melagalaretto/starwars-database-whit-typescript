@@ -24,28 +24,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 exports.__esModule = true;
-exports.Users = void 0;
+exports.PersonajesFavoritos = void 0;
 var typeorm_1 = require("typeorm");
-var Users = /** @class */ (function (_super) {
-    __extends(Users, _super);
-    function Users() {
+var Users_1 = require("./Users");
+var Personajes_1 = require("./Personajes");
+var PersonajesFavoritos = /** @class */ (function (_super) {
+    __extends(PersonajesFavoritos, _super);
+    function PersonajesFavoritos() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], Users.prototype, "id");
+    ], PersonajesFavoritos.prototype, "id");
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "name");
+        typeorm_1.ManyToOne(function () { return Users_1.Users; }, function (Users) { return Users.PersonajesFavoritos; }),
+        __metadata("design:type", Object)
+    ], PersonajesFavoritos.prototype, "Users");
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Users.prototype, "password");
-    Users = __decorate([
+        typeorm_1.ManyToOne(function () { return Personajes_1.Personajes; }, function (Personajes) { return Personajes.PersonajesFavoritos; }),
+        __metadata("design:type", Array)
+    ], PersonajesFavoritos.prototype, "Personajes");
+    PersonajesFavoritos = __decorate([
         typeorm_1.Entity()
-    ], Users);
-    return Users;
+    ], PersonajesFavoritos);
+    return PersonajesFavoritos;
 }(typeorm_1.BaseEntity));
-exports.Users = Users;
+exports.PersonajesFavoritos = PersonajesFavoritos;
